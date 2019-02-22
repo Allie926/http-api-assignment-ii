@@ -23,6 +23,7 @@ const onRequest = (request, response) => {
         responseHandler.notReal(request, response);
       }
       break;
+	  
     case 'HEAD':
       if (parsedUrl.pathname === '/getChars') {
         responseHandler.getCharsMeta(request, response);
