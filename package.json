@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/cql3842/http-api-assignment-ii#readme",
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0"
   }

@@ -15,8 +15,8 @@ const onRequest = (request, response) => {
         htmlHandler.getIndex(request, response);
       } else if (parsedUrl.pathname === '/style.css') {
         htmlHandler.getCSS(request, response);
-      } else if (parsedUrl.pathname === '/getUsers') {
-        responseHandler.getUsers(request, response);
+      } else if (parsedUrl.pathname === '/getChars') {
+        responseHandler.getChars(request, response);
       } else if (parsedUrl.pathname === '/notReal') {
         responseHandler.notReal(request, response);
       } else {
@@ -24,8 +24,8 @@ const onRequest = (request, response) => {
       }
       break;
     case 'HEAD':
-      if (parsedUrl.pathname === '/getUsers') {
-        responseHandler.getUsersMeta(request, response);
+      if (parsedUrl.pathname === '/getChars') {
+        responseHandler.getCharsMeta(request, response);
       } else {
         responseHandler.notRealMeta(request, response);
       }
@@ -49,7 +49,7 @@ const onRequest = (request, response) => {
           const bodyString = Buffer.concat(body).toString();
           const bodyParams = query.parse(bodyString);
 
-          responseHandler.addUser(request, res, bodyParams);
+          responseHandler.addChar(request, res, bodyParams);
         });
       }
       break;

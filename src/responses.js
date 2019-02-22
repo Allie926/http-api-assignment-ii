@@ -1,4 +1,4 @@
-const users = {};
+const chars = {};
 
 const respondJSON = (request, response, status, object) => {
   const headers = {
@@ -18,36 +18,37 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getUsers = (request, response) => {
+const getChars = (request, response) => {
   const responseJSON = {
-    users,
+    chars,
   };
 
   return respondJSON(request, response, 200, responseJSON);
 };
 
-const getUsersMeta = (request, response) => respondJSONMeta(request, response, 200);
+const getCharsMeta = (request, response) => respondJSONMeta(request, response, 200);
 
-const addUser = (request, response, body) => {
+const addChar = (request, response, body) => {
   const responseJSON = {
-    message: 'Name and age are both required.',
+    message: 'Name, level, and class are all required.',
   };
 
-  if (!body.name || !body.age) {
+  if (!body.name || !body.level || !body.class) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
 
   let responseCode = 201;
 
-  if (users[body.name]) {
+  if (chars[body.name]) {
     responseCode = 204;
   } else {
-    users[body.name] = {};
+    chars[body.name] = {};
   }
 
-  users[body.name].name = body.name;
-  users[body.name].age = body.age;
+  chars[body.name].name = body.name;
+  chars[body.name].level = body.level;
+  chars[body.name].class = body.class;
 
   if (responseCode === 201) {
     responseJSON.message = 'Created Successfully';
@@ -71,9 +72,9 @@ const notRealMeta = (request, response) => {
 };
 
 module.exports = {
-  getUsers,
-  getUsersMeta,
+  getChars,
+  getCharsMeta,
   notReal,
   notRealMeta,
-  addUser,
+  addChar,
 };
